@@ -1,16 +1,17 @@
-### Assignment
+The `Categorgy` class in `budget.py` instantiate objects based on different budget categories like *food*, *clothing*, and *entertainment*. When objects are created, they are passed in the name of the category. The class contains a `ledger` that is an unedit list, off all transactions and a `transaction_history` that contains an edited list for display. 
 
-Complete the `Category` class in `budget.py`. It should be able to instantiate objects based on different budget categories like *food*, *clothing*, and *entertainment*. When objects are created, they are passed in the name of the category. The class should have an instance variable called `ledger` that is a list. The class should also contain the following methods:
+`Category` also contain the following methods:
 
-* A `deposit` method that accepts an amount and description. If no description is given, it should default to an empty string. The method should append an object to the ledger list in the form of `{"amount": amount, "description": description}`.
-* A `withdraw` method that is similar to the `deposit` method, but the amount passed in should be stored in the ledger as a negative number. If there are not enough funds, nothing should be added to the ledger. This method should return `True` if the withdrawal took place, and `False` otherwise.
-* A `get_balance` method that returns the current balance of the budget category based on the deposits and withdrawals that have occurred.
-* A `transfer` method that accepts an amount and another budget category as arguments. The method should add a withdrawal with the amount and the description "Transfer to [Destination Budget Category]". The method should then add a deposit to the other budget category with the amount and the description "Transfer from [Source Budget Category]". If there are not enough funds, nothing should be added to either ledgers. This method should return `True` if the transfer took place, and `False` otherwise.
-* A `check_funds` method that accepts an amount as an argument. It returns `False` if the amount is greater than the balance of the budget category and returns `True` otherwise. This method should be used by both the `withdraw` method and `transfer` method.
+* The `deposit` method that accepts an amount and description. If no description is given, it default's to an empty string. The method appends an object to the ledger list in the form of `{"amount": amount, "description": description}` and appends an object to the transaction history in the form of `f"{description[:23]:<23}{amount::>7.2f}"`.
+* The `withdraw` method that is similar to the `deposit` method, but the amount passed in is stored in the ledger as a negative number. If there are not enough funds, nothing is added to the ledger. This method returns `True` if the withdrawal took place, and `False` otherwise.
+* The `get_balance` method returns the current balance of the budget category based on the deposits and withdrawals that have occurred.
+* The `transfer` method that accepts an amount and another budget category as arguments. The method adds a withdrawal with the amount and the description "Transfer to [Destination Budget Category]". The method then adds a deposit to the other budget category with the amount and the description "Transfer from [Source Budget Category]". If there are not enough funds, nothing is added to either ledger. This method returns `True` if the transfer took place, and `False` otherwise.
+* The `check_funds` method accepts an amount as an argument. It returns `False` if the amount is greater than the balance of the budget category and returns `True` otherwise. This method is used by both the `withdraw` method and `transfer` method.
+* The `get_ledger` method that returns the ledger entries line by line.
 
-When the budget object is printed it should display:
-* A title line of 30 characters where the name of the category is centered in a line of `*` characters.
-* A list of the items in the ledger. Each line should show the description and amount. The first 23 characters of the description should be displayed, then the amount. The amount should be right aligned, contain two decimal places, and display a maximum of 7 characters.
+When the budget object is printed it displays:
+* The title line of 30 characters where the name of the category is centered in a line of `*` characters.
+* The list of the items in the transaction_hisotry. Each line shows the description and amount. The first 23 characters of the descriptionis displayed, then the amount. The amount is right aligned, contains two decimal places, and displays a maximum of 7 characters.
 * A line displaying the category total.
 
 Here is an example of the output:
@@ -23,13 +24,13 @@ Transfer to Clothing    -50.00
 Total: 923.96
 ```
 
-Besides the `Category` class, create a function (ouside of the class) called `create_spend_chart` that takes a list of categories as an argument. It should return a string that is a bar chart.
+Besides the `Category` class, there is the function called `create_spend_chart` that takes a list of categories as an argument. It returns a string that is a bar chart.
 
-The chart should show the percentage spent in each category passed in to the function. The percentage spent should be calculated only with withdrawals and not with deposits. Down the left side of the chart should be labels 0 - 100. The "bars" in the bar chart should be made out of the "o" character. The height of each bar should be rounded down to the nearest 10. The horizontal line below the bars should go two spaces past the final bar. Each category name should be vertacally below the bar. There should be a title at the top that says "Percentage spent by category".
+The chart shows the percentage spent in each category passed in to the function. Down the left side of the chart are the labels 0 - 100. The "bars" in the bar chart are made out of the "o" character. The height of each bar is rounded down to the nearest 10. The horizontal line below the bars always goes two spaces past the final bar. Each category name is vertacally below the bar. There is a title at the top that says "Percentage spent by category".
 
-This function will be tested with up to four categories.
+This function will only take up to four categories.
 
-Look at the example output below very closely and make sure the spacing of the output matches the example exactly.
+Example output below:
 
 ```
 Percentage spent by category
@@ -55,16 +56,9 @@ Percentage spent by category
         g     
 ```
 
-The unit tests for this project are in `test_module.py`.
-
-### Development
-
-Write your code in `budget.py`. For development, you can use `main.py` to test your `Category` class. Click the "run" button and `main.py` will run.
-
 ### Testing 
 
-We imported the tests from `test_module.py` to `main.py` for your convenience. The tests will run automatically whenever you hit the "run" button.
+The unit tests for this project are in `test_module.py`.
 
-### Submitting
+The tests are imported from `test_module.py` to `main.py` for your convenience. The tests will run automatically whenever you hit the "run" button.
 
-Copy your project's URL and submit it to freeCodeCamp.
