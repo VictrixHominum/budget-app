@@ -44,6 +44,9 @@ class Category:
     def get_balance(self):
         return self.balance
 
+    def get_ledger(self):
+        return "\n".join(self.ledger)
+
 
 def create_spend_chart(categories):
     total_spent = 0.00
